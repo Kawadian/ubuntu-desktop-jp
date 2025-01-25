@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 ENV HOME=/root \
     DEBIAN_FRONTEND=noninteractive \
@@ -18,7 +18,6 @@ RUN apt-get install -y apt-utils
 # Install japanese language packs(optional)
 RUN apt-get install -y \
       language-pack-ja-base language-pack-ja \
-      ibus-anthy \
       fonts-takao \
       && \
     echo ja_JP.UTF-8 UTF-8 >> /etc/locale.gen && \
@@ -34,14 +33,20 @@ RUN apt-get install -y \
     # Install utilities(optional).
     apt-get install -y \
       wget \
+      xrdp \
+      gedit \
       curl \
       net-tools \
       vim-tiny \
+      dbus-x11 \
       xfce4-terminal \
       && \
     # Clean up
     apt-get clean && \
     rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+
+# enable xrdp
+RUN sudo systemctl enable xrdp
 
 # Install noVNC
 RUN mkdir -p /opt/noVNC/utils/websockify && \
