@@ -58,5 +58,7 @@ RUN mkdir -p /opt/noVNC/utils/websockify && \
 RUN LANG=C xdg-user-dirs-update --force
 
 EXPOSE 8080
+EXPOSE 5900
+EXPOSE 3389
 COPY supervisord/* /etc/supervisor/conf.d/
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

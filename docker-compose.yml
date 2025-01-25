@@ -7,6 +7,7 @@ services:
     ports:
       - "8080:8080"
       - "5900:5900"
+      - "3389:3389"
     volumes:
       - ./data/root:/root/
       - ./data/etc/supervisor:/etc/supervisor
